@@ -1,0 +1,13 @@
+@import url(./__like-button/grid-card__like-button.css);
+@import url(./__like-counter/grid-card__like-counter.css);
+@import url(./__photo/grid-card__photo.css);
+@import url(./__title/grid-card__title.css);
+@import url(./__textbox/grid-card__textbox.css);
+@import url(./__remove/grid-card__remove.css);
+.grid-card{
+    width: 100%;
+    background-color: white;
+    border-radius: 10px 10px 10px 10px;
+    position: relative;
+
+}

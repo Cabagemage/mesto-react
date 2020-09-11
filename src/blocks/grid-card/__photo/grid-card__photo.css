@@ -1,0 +1,8 @@
+.grid-card__photo{
+    width: 100%;
+    display: block;
+    height: 282px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    color: black;
+}

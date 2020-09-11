@@ -1,0 +1,25 @@
+
+.popup__input{
+    border: none;
+    border-bottom: 1px solid black;
+    max-width: 358px;
+    height: 27px;
+    width: 100%;
+    color: black;
+    }
+
+    @media screen and (max-width: 516px){
+        .popup__input{
+        max-width: 350px;
+        }
+        }
+    @media screen and (max-width: 470px){
+        .popup__input{
+        max-width: 230px;
+        }
+        }
+    @media screen and (max-width: 350px){
+            .popup__input{
+            max-width: 220px;
+            }
+            }

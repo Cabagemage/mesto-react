@@ -1,0 +1,8 @@
+.popup__save_function_create{
+margin-top: 48px;
+}
+@media screen and (max-width: 450px){
+    .popup__save_function_create{
+    max-width: 200px;
+    }
+}
