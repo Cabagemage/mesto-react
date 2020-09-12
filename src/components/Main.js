@@ -7,7 +7,7 @@ import PopupWithForm from '../components/PopupWithForm'
 import GridTemplate from '../components/GridTemplate';
 import { apiProfile } from '../utils/Api.js'
 function Main(props) {
-
+ 
     const [userName, setUserName] = React.useState('')
     const [userDescription, setUserInfo] = React.useState('')
     const [userAvatar, setUserAvatar] = React.useState('')
@@ -20,17 +20,17 @@ function Main(props) {
                 setUserAvatar(data.avatar)
             })
             .catch((err) => {
-                console.log(err) // выведем ошибку в консоль
+                console.log(err) 
             })
     }, [])
 
     React.useEffect(() => {
         apiProfile.getInitialCards()
             .then((cards) => {
-                setCards([...cards])
+                setCards(cards) //Вывод карточек
             })
             .catch((err) => {
-                console.log(err) // выведем ошибку в консоль
+                console.log(err) 
             })
     }, [])
 
@@ -42,9 +42,11 @@ function Main(props) {
                 </div>
                 <div className="profile__textbox">
                     <div className="profile__info">
-                        <h1 className="profile__name">{userName}</h1>
+                    {/* //прокидываю переменную userName для установки данных с сервера  */}
+                        <h1 className="profile__name">{userName}</h1> 
                         <button type="button" onClick={props.onEditProfile} className="profile__edit"></button>
                         <p className="profile__subtitle">{userDescription}</p>
+                        {/* //прокидываю переменную userDescription для установки данных с сервера  */}
                     </div>
                 </div>
                 <button type="button" className="profile__add" onClick={props.onAddPlace}></button>
