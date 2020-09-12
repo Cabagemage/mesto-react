@@ -4,8 +4,8 @@ import Header from './components/Header'
 import Main from  './components/Main'
 import Footer from './components/Footer'
 import PopupWithForm from './components/PopupWithForm'
-
-function App() {
+import PopupImage from './components/PopupImage'
+function App(props) {
 
   const handleEditClick = () => {
     setEditProfilePopupOpen(true)
@@ -16,15 +16,22 @@ const handleAddClick = () => {
 const handleAvatarClick = () => {
   setChangeAvatarPopupOpen(true)
 }
+const handleCardClick = () => {
+  setSelectedCard(true)
+  console.log('click')
+}
 const closeAllPopups = () => {
   setChangeAvatarPopupOpen(false)
   setEditProfilePopupOpen(false)
   setAddImagePopupOpen(false)
+  setSelectedCard(false)
 }
 
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddImagePopupOpen, setAddImagePopupOpen] = React.useState(false);
   const [isChangeAvatarPopupOpen, setChangeAvatarPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({isOpen: false, name: '', link: ''});
+
   return (
     <div className="page" >
        <Header />
@@ -32,6 +39,7 @@ const closeAllPopups = () => {
       onEditProfile = {handleEditClick}
       onAddPlace  = {handleAddClick}
       onEditAvatar = {handleAvatarClick}
+      handleClick = {handleCardClick}
       />
 
       <PopupWithForm
@@ -94,7 +102,11 @@ const closeAllPopups = () => {
           </>
       }
   />
-      
+      <PopupImage 
+      card={selectedCard} 
+      isClose={closeAllPopups}
+      name='image'
+      />
        
        <Footer />
 

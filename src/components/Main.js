@@ -4,7 +4,7 @@ import Elements from '../components/Elements';
 import '../App.css';
 import PopupImage from '../components/PopupImage'
 import PopupWithForm from '../components/PopupWithForm'
-
+import GridTemplate from '../components/GridTemplate';
 import { apiProfile } from '../utils/Api.js'
 function Main(props) {
 
@@ -23,15 +23,17 @@ function Main(props) {
                 console.log(err) // выведем ошибку в консоль
             })
     }, [])
+
     React.useEffect(() => {
         apiProfile.getInitialCards()
-            .then((data) => {
-                cards(data)
+            .then((cards) => {
+                setCards([...cards])
             })
             .catch((err) => {
                 console.log(err) // выведем ошибку в консоль
             })
     }, [])
+
     return (
         <div className="main" >
             <div className="profile">
@@ -47,25 +49,14 @@ function Main(props) {
                 </div>
                 <button type="button" className="profile__add" onClick={props.onAddPlace}></button>
             </div>
-            {/* <section className="elements">
-                {cards.map(item => {
-                <div className="grid-card">
-                    <img className="grid-card__photo" style={{ backgroundImage: `url(${props.link})` }} alt="" />
-                    <button className="grid-card__remove"></button>
-                    <div className="grid-card__textbox">
-                        <h2 className="grid-card__title">`${props.link}`</h2>
-                        <div className="grid-card__like-section">
-                            <button type="button" className="grid-card__like-button like-button_like_active"></button>
-                            <p className="grid-card__like-counter">`${item.likes}</p>
-                        </div>
-                    </div>
-                    </div>
-                    }) 
-                    }
-            </section> */}
-                <PopupImage />
-        </div>
+            
+            <section className="elements">
+                {cards.map(card => (
+                <GridTemplate key = {card.key} name={card.name} link={card.link} onCardClick={card.onCardClick} />))}
+            </section>
 
+                
+        </div>
     );
 }
 
