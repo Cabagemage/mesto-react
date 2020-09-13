@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-
+// Попап не используется. Разметка зарезервирована для дальнейшего рефакторинга 
 function PopupRemove() {
   return (
 <div className="popup popup_function_remove">
