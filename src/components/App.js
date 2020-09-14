@@ -1,21 +1,21 @@
 import React from 'react';
-import './App.css';
-import Header from './components/Header'
-import Main from './components/Main'
-import Footer from './components/Footer'
-import PopupWithForm from './components/PopupWithForm'
-import PopupImage from './components/PopupImage'
+import '../App.css';
+import Header from './Header'
+import Main from './Main'
+import Footer from './Footer'
+import PopupWithForm from './PopupWithForm'
+import PopupImage from './PopupImage'
 // Если вы читаете это сообщение, значит проектная работа была отправлена, а 
 // автор работы находится в глубоком экзистенциальном кризисе, и после реакта, скорее всего, очень пьян.
 // Почему для реализации этого функционала на нативном ДжаваСкрипте я сидел столькими бессонными ночами, плакал и бился головой об стену 
 // Если реакт делает тоже самое, но так изящно, что даже представить себе сложно. 
 // Конец записи.  
-function App(props) {
+function App() {
 
     const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
     const [isAddImagePopupOpen, setAddImagePopupOpen] = React.useState(false);
     const [isChangeAvatarPopupOpen, setChangeAvatarPopupOpen] = React.useState(false);
-    const [selectedCard, setSelectedCard] = React.useState();
+    const [selectedCard, setSelectedCard] = React.useState(null);
 
     const handleEditClick = () => {
         setEditProfilePopupOpen(true)
@@ -33,7 +33,7 @@ function App(props) {
         setChangeAvatarPopupOpen(false)
         setEditProfilePopupOpen(false)
         setAddImagePopupOpen(false)
-        setSelectedCard()
+        setSelectedCard(null)
     }
 
     return (

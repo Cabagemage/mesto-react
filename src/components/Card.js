@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 
-function GridTemplate({ card, onCardClick }) {
+function Card({ card, onCardClick }) {
 
   function handleClick() {
     onCardClick(card);
@@ -24,4 +24,4 @@ function GridTemplate({ card, onCardClick }) {
 }
 
 
-export default GridTemplate;
+export default Card;
