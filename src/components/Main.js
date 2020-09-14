@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import GridTemplate from './Card';
+import Card from './Card';
 import { apiProfile } from '../utils/Api.js'
 function Main({onEditAvatar, onEditProfile, onCardClick, onAddPlace}) {
 // Хуки для  получения стейтов
@@ -39,7 +39,7 @@ function Main({onEditAvatar, onEditProfile, onCardClick, onAddPlace}) {
             </div>
 
             <section className="elements">
-                {cards.map((card) => (<GridTemplate key={card._id} card={card} onCardClick={onCardClick} />))}
+                {cards.map((card) => (<Card key={card._id} card={card} onCardClick={onCardClick} />))}
             </section>
 
 
