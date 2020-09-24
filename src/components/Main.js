@@ -1,23 +1,18 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import '../App.css';
 import Card from './Card';
 import { apiProfile } from '../utils/Api.js'
+import {currentUserContext} from './currentUserContext'
 function Main({onEditAvatar, onEditProfile, onCardClick, onAddPlace}) {
-// Хуки для  получения стейтов
-    const [userName, setUserName] = React.useState('')
-    const [userDescription, setUserInfo] = React.useState('')
-    const [userAvatar, setUserAvatar] = React.useState('')
-    const [cards, setCards] = React.useState([]);
+   const currentUser = useContext(currentUserContext)
+
+    const [userAvatar, setUserAvatar] = useState('')
+    const [cards, setCards] = useState([]);
 // Хуки для  изменения стейтов.
-    React.useEffect(() => {
         apiProfile.getAppinfo().then(res => {
         const [initialCards, info] = res
-                setUserName(info.name)
-                setUserInfo(info.about)
-                setUserAvatar(info.avatar)
                 setCards(initialCards)
         })
-    }, [])
 
 //возвращение разметки. Переменные userName / userDescrpiption через устанавливают соответствующие данные
     return (
@@ -29,9 +24,9 @@ function Main({onEditAvatar, onEditProfile, onCardClick, onAddPlace}) {
                 <div className="profile__textbox">
                     <div className="profile__info">
                         {/* //прокидываю переменную userName для установки данных с сервера  */}
-                        <h1 className="profile__name">{userName}</h1>
+                        <h1 className="profile__name">{currentUser.value.name}</h1>
                         <button type="button" onClick={onEditProfile} className="profile__edit"></button>
-                        <p className="profile__subtitle">{userDescription}</p>
+                        <p className="profile__subtitle">{currentUser.value.about}</p>
                         {/* //прокидываю переменную userDescription для установки данных с сервера  */}
                     </div>
                 </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import '../App.css';
 
-function PopupImage({card, isClose}) {
+function PopupImage({card, isClose, closeToOverlay}) {
   return (
 
-    <div className={`popup   popup_function_image ${card && 'popup_opened'}  `}>
+    <div className={`popup   popup_function_image ${card && 'popup_opened'}  `} onClick={closeToOverlay}>
       <div className="popup__container popup__container_function_image">
         <button type="button" className="popup__close popup__close_current_image" onClick={isClose}></button>
         <img className="image"   src={card && card.link} alt="" />

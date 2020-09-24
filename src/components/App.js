@@ -1,22 +1,42 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import '../App.css';
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 import PopupWithForm from './PopupWithForm'
 import PopupImage from './PopupImage'
+import { apiProfile } from '../utils/Api.js'
+import {currentUserContext} from './currentUserContext'
 // Если вы читаете это сообщение, значит проектная работа была отправлена, а 
 // автор работы находится в глубоком экзистенциальном кризисе, и после реакта, скорее всего, очень пьян.
 // Почему для реализации этого функционала на нативном ДжаваСкрипте я сидел столькими бессонными ночами, плакал и бился головой об стену 
 // Если реакт делает тоже самое, но так изящно, что даже представить себе сложно. 
 // Конец записи.  
+
+
 function App() {
+    const [currentUser, setCurrentUser] = useState()
+    
+    const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
+    const [isAddImagePopupOpen, setAddImagePopupOpen] = useState(false);
+    const [isChangeAvatarPopupOpen, setChangeAvatarPopupOpen] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(null);
+    
+    apiProfile.getUserInformation().
+    then(res => 
+            setCurrentUser(res)
+        )
 
-    const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
-    const [isAddImagePopupOpen, setAddImagePopupOpen] = React.useState(false);
-    const [isChangeAvatarPopupOpen, setChangeAvatarPopupOpen] = React.useState(false);
-    const [selectedCard, setSelectedCard] = React.useState(null);
+    const handleOverlayClose = e => {
+            if (e.target !== e.currentTarget) { return }
+            closeAllPopups();
+    }
 
+//   const handleEscClose = () => {
+//     document.addEventListener('keyup', (e) => {
+//         if (e.keyCode === 27) closeAllPopups();
+//     });
+//   }
     const handleEditClick = () => {
         setEditProfilePopupOpen(true)
     }
@@ -38,6 +58,7 @@ function App() {
 
     return (
         <div className="page" >
+            <currentUserContext.Provider value={currentUser}>
             <Header />
             <Main
                 onEditProfile={handleEditClick}
@@ -51,6 +72,7 @@ function App() {
                 title='Редактировать профиль'
                 isOpen={isEditProfilePopupOpen}
                 isClose={closeAllPopups}
+                closeToOverlay={handleOverlayClose}
                 children={
                     <>
                         <div className="popup__inputs">
@@ -71,6 +93,7 @@ function App() {
                 title='Новое место'
                 isOpen={isAddImagePopupOpen}
                 isClose={closeAllPopups}
+                closeToOverlay={handleOverlayClose}
                 children={
                     <>
                         <div className="popup__inputs">
@@ -93,6 +116,7 @@ function App() {
                 isClose={closeAllPopups}
                 popupCloseName="avatar"
                 isOpen={isChangeAvatarPopupOpen}
+                closeToOverlay={handleOverlayClose}
                 children={
                     <>
                         <div className="popup__inputs">
@@ -107,8 +131,10 @@ function App() {
             <PopupImage
                 card={selectedCard}
                 isClose={closeAllPopups}
+                closeToOverlay={handleOverlayClose}
             />
             <Footer />
+            </currentUserContext.Provider>
         </div>
     );
 }
