@@ -15,18 +15,18 @@ import {currentUserContext} from './currentUserContext'
 
 
 function App() {
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useState({})
     
     const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
     const [isAddImagePopupOpen, setAddImagePopupOpen] = useState(false);
     const [isChangeAvatarPopupOpen, setChangeAvatarPopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
-    
+    useEffect(() =>{
     apiProfile.getUserInformation().
     then(res => 
             setCurrentUser(res)
         )
-
+    }, [])
     const handleOverlayClose = e => {
             if (e.target !== e.currentTarget) { return }
             closeAllPopups();

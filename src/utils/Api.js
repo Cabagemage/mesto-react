@@ -74,20 +74,19 @@
         }).then(this.checkStatus)
     }
     // Лайкос
-    putLikeToCard(cardId) {
-        return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-            method: 'PUT',
-            headers: this.headers
-        }).then(this.checkStatus)
-    }
 
-    //Удаление лайкоса
-    deleteLikeOfCard(cardId) {
-        return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-            method: 'DELETE',
+    changeLikeStatus(cardId, isLiked){
+        if(isLiked)
+        {return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+            method:  'PUT',
             headers: this.headers
         }).then(this.checkStatus)
+    } else if (!isLiked)  {return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+        method: 'DELETE',
+        headers: this.headers
+    }).then(this.checkStatus)}
     }
+    
 }
 export const apiProfile = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
