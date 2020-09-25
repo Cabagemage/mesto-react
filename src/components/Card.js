@@ -7,7 +7,7 @@ import { currentUserContext } from './currentUserContext'
 
 
 
-function Card({ card, onCardClick, onCardLike }) {
+function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(currentUserContext)
   const isOwn = card.owner._id === currentUser._id;
   const cardDeleteButtonClassName = (
@@ -22,10 +22,13 @@ function Card({ card, onCardClick, onCardLike }) {
   function handleLikeClick() {
     onCardLike(card)
   }
+  function handleDeleteClick() {
+    onCardDelete(card)
+  }
   return (
     <div className="grid-card">
       <img className="grid-card__photo" src={card.link} alt="" onClick={handleClick} />
-      <button className={cardDeleteButtonClassName}></button>
+      <button onClick={handleDeleteClick} className={cardDeleteButtonClassName}></button>
       <div className="grid-card__textbox">
         <h2 className="grid-card__title">{card.name}</h2>
         <div className="grid-card__like-section">

@@ -50,25 +50,25 @@
         .then(this.checkStatus)
     }
     //Метод для изменения инфы профиля
-    setUserInfo(newname, newabout) {
+    setUserInfo(data) {
         return fetch(`${this.baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
-                name: newname,
-                about: newabout,
+                name: data.name,
+                about: data.about,
             })
 
         }).then(this.checkStatus)
 
     }
     //Метод для изменения аватарки
-    changeProfileAvatar(newavatar) {
+    changeProfileAvatar(data) {
         return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
-                avatar: newavatar
+                avatar: data.avatar
             })
 
         }).then(this.checkStatus)
