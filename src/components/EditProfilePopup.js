@@ -1,7 +1,7 @@
 import React from 'react'
 import PopupWithForm from './PopupWithForm'
 import { currentUserContext } from './currentUserContext'
-import { apiProfile } from '../utils/Api'
+
 export default function EditProfilePopup({ isOpen, isClose, closeToOverlay, onUpdateUser }) {
 
     const [name, updateUserName] = React.useState();
@@ -13,10 +13,7 @@ export default function EditProfilePopup({ isOpen, isClose, closeToOverlay, onUp
         updateAboutInfo(currentUser.about)
     }, [currentUser.name, currentUser.about])
 
-    function handleChange(e) {
-        updateUserName(e.target.value)
-        updateAboutInfo(e.target.value)
-    }
+
 
     function handleSubmit(e) {
         e.preventDefault();

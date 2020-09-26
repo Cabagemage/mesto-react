@@ -1,13 +1,14 @@
- class Api {
+class Api {
     constructor({ baseUrl, headers }) {
         this.baseUrl = baseUrl;
         this.headers = headers;
     }
 
-    checkStatus(res){
-        if (res.ok){
-        return res.json()}
-        else{return Promise.reject(`Ошибка: ${res.status}`)}
+    checkStatus(res) {
+        if (res.ok) {
+            return res.json()
+        }
+        else { return Promise.reject(`Ошибка: ${res.status}`) }
     }
 
     getAppinfo() {
@@ -32,7 +33,7 @@
                 link: data.link,
             }),
         })
-        .then(this.checkStatus)
+            .then(this.checkStatus)
     };
     // Метод для удаления карточки
     deleteThisCard(cardId) {
@@ -40,14 +41,14 @@
             method: 'Delete',
             headers: this.headers
         })
-        .then(this.checkStatus)
+            .then(this.checkStatus)
     }
     // Метод для получения инфы профиля
     getUserInformation() {
         return fetch(`${this.baseUrl}/users/me`, {
             headers: this.headers,
         })
-        .then(this.checkStatus)
+            .then(this.checkStatus)
     }
     //Метод для изменения инфы профиля
     setUserInfo(data) {
@@ -75,24 +76,26 @@
     }
     // Лайкос
 
-    changeLikeStatus(cardId, isLiked){
-        if(isLiked)
-        {return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-            method:  'PUT',
-            headers: this.headers
-        }).then(this.checkStatus)
-    } else if (!isLiked)  {return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-        method: 'DELETE',
-        headers: this.headers
-    }).then(this.checkStatus)}
+    changeLikeStatus(cardId, isLiked) {
+        if (isLiked) {
+            return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+                method: 'PUT',
+                headers: this.headers
+            }).then(this.checkStatus)
+        } else if (!isLiked) {
+            return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+                method: 'DELETE',
+                headers: this.headers
+            }).then(this.checkStatus)
+        }
     }
-    
+
 }
 export const apiProfile = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
     headers: {
-      authorization: '60dbe103-3bf7-4b68-8dd7-d41370d9694c',
-      'Content-Type': 'application/json'
+        authorization: '60dbe103-3bf7-4b68-8dd7-d41370d9694c',
+        'Content-Type': 'application/json'
     }
-  
-  });
+
+});

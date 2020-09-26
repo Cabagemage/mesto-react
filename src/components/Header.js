@@ -4,9 +4,9 @@ import '../App.css';
 
 function Header() {
   return (
-      <header className="header">
-        <img src={logo} className="header__logo" alt="logo" />
-      </header>
+    <header className="header">
+      <img src={logo} className="header__logo" alt="logo" />
+    </header>
   );
 }
 
