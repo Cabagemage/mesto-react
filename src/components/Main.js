@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "../App.css";
 import Card from "./Card";
-import { currentUserContext } from "./currentUserContext";
+import { currentUserContext } from "../contexts/currentUserContext";
 
 function Main({
   onEditAvatar,
