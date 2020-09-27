@@ -1,2 +1,2 @@
-import React from 'react';
-export const currentUserContext = React.createContext({})
+import React from "react";
+export const currentUserContext = React.createContext({});
