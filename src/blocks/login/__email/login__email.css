@@ -1,0 +1,10 @@
+.login__email{
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  margin-bottom: 30px;
+  color: white;
+  max-width: 358px;
+  height: 27px;
+  width: 100%;
+}

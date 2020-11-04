@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import "../App.css";
 import Header from "./Header";
 import Main from "./Main";
@@ -9,6 +9,9 @@ import { apiProfile } from "../utils/Api.js";
 import { currentUserContext } from "../contexts/currentUserContext";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import Login from "./Login";
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import ProtectedRoute from "./HOC/ProtectedRoute"
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -17,7 +20,7 @@ function App() {
   const [isChangeAvatarPopupOpen, setChangeAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
-
+  const [loggedIn, setLoggedIn] = useState(false)
   useEffect(() => {
     apiProfile
       .getAppinfo()
@@ -112,9 +115,14 @@ function App() {
   }
 
   return (
+    <BrowserRouter>
+
+       <Switch>
     <div className="page">
       <currentUserContext.Provider value={currentUser}>
+
         <Header />
+        <Route exact path="/">
         <Main
           cards={cards}
           onCardLike={handleCardLike}
@@ -124,6 +132,10 @@ function App() {
           onEditAvatar={handleAvatarClick}
           onCardClick={handleCardClick}
         />
+        </Route>
+          <Route exact path="/sign-in">
+          <Login />
+        </Route>
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           isClose={closeAllPopups}
@@ -148,9 +160,13 @@ function App() {
           isClose={closeAllPopups}
           closeToOverlay={handleOverlayClose}
         />
+
         <Footer />
       </currentUserContext.Provider>
-    </div>
+      </div>
+      </Switch>
+
+    </BrowserRouter>
   );
 }
 
